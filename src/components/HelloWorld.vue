@@ -4,6 +4,9 @@
    HELLO
 
    <button @click="getQLData">Get data</button>
+   <!-- {{ categories }} -->
+   <!-- <p>{{ $apollo.queries.data.loading ? 'Loading...' : $apollo.queries.data }}</p> -->
+
   </div>
 </template>
 
@@ -26,6 +29,12 @@ export default {
   props: {
     msg: String
   },
+  apollo: {
+    // Specify the query
+    categories: {
+      query: GET_DATA,
+    },
+  },
 //     apollo: {
 //     // Simple query that will update the 'hello' vue property
 //     hello: gql`query{
@@ -40,6 +49,9 @@ export default {
 //   }
 // }`,
 //   },
+// mounted(){
+//   console.log(categories);
+// },
 methods: {
   getQLData() {
     this.$apollo.query({
@@ -69,3 +81,41 @@ a {
   color: #42b983;
 }
 </style>
+
+
+
+<!-- <template>
+  <div>
+    <h1>My Component</h1>
+    <div v-if="loading">Loading...</div>
+    <div v-else>
+      <ul>
+        <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import gql from 'graphql-tag';
+
+export default {
+  apollo: {
+    items: {
+      query: gql`
+        query {
+          categories {
+    items {
+      name,
+      children {
+        uid,
+        name
+      }
+    }
+  }
+        }
+      `,
+    },
+  },
+};
+</script> -->
