@@ -49,6 +49,9 @@ const apolloClient = new ApolloClient({
   // Configure your Apollo Client options here
   // e.g., provide the GraphQL endpoint URL
   uri: 'https://venia.magento.com/graphql',
+  fetchOptions: {
+    mode: 'no-cors',
+  },
 });
 
 const apolloProvider = new VueApollo({
