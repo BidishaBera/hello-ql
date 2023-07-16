@@ -14,7 +14,8 @@
 import gql from 'graphql-tag'
 
 const GET_DATA = gql`query{
-  categories {
+  query categories {
+    categories {
     items {
       name,
       children {
@@ -22,6 +23,7 @@ const GET_DATA = gql`query{
         name
       }
     }
+  }
   }
 }`
 export default {
@@ -32,7 +34,16 @@ export default {
   apollo: {
     // Specify the query
     categories: {
-      query: GET_DATA,
+      query: () => GET_DATA,
+      update ({data}) {
+        console.log('data in update', data);
+      },
+      result({data}) {
+        console.log('data in result',data);
+      },
+      error (error) {
+        console.log('this is error', error);
+      }
     },
   },
 //     apollo: {
